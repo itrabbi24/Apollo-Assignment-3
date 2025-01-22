@@ -1,4 +1,4 @@
-import userModal from "./user.model"
+import { userModal } from "./user.model";
 
 const getAllUser = async()=>{
     const users = await userModal.find();
