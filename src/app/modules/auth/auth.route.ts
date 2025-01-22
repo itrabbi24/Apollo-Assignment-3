@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import validRequestHandler from '../middlewares/validRequestHandler';
+import validRequestHandler from '../../middlewares/validRequestHandler';
 import { ZodSignupValidation } from './auth.validation';
 import { AuthController } from './auth.controller';
 

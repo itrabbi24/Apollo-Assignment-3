@@ -1,4 +1,4 @@
-import AppError from '../errors/AppError';
+import AppError from '../../errors/AppError';
 import { IUser } from '../users/user.interface';
 import { userModal } from '../users/user.model';
 

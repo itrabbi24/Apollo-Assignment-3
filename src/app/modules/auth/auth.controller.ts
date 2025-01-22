@@ -1,10 +1,8 @@
-import asyncHandler from '../utils/asyncHandler';
-import sendResponse from '../utils/sendResponse';
+import asyncHandler from '../../utils/asyncHandler';
+import sendResponse from '../../utils/sendResponse';
 import { AuthService } from './auth.service';
 
 const signUpUser = asyncHandler(async (req, res, next) => {
-
-  console.log('req.body', req.body);
 
   const result = await AuthService.signUpUser(req.body);
 
