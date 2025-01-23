@@ -30,6 +30,11 @@ userSchema.post("save", async function(userInfo, next) {
   next();
 });
 
+
+userSchema.statics.isMatchPassword = async function(password: string, hashPassword: string) {
+  return await bcrypt.compare(password, hashPassword);
+};
+
 export const userModal = model<IUser, IUserMethod>('User', userSchema);
 
 

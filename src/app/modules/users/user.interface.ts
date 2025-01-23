@@ -15,13 +15,9 @@ export interface IUser {
 }
 
 
-export interface IUserMethod extends Model<IUser>{
-    isUserExist(email: string): Promise<IUser | null>;
 
-    isPasswordMatch(
-        plainPassword: string,
-        encryptedPassword: string
-    ): Promise<boolean>;
-
-    
-}
+export interface IUserMethod extends Model<IUser> {
+    isUserExist(email: string): Promise<IUser>;
+    isMatchPassword(plainPassword: string,hashPassword: string): Promise<boolean>;
+  }
+  
