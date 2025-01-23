@@ -21,7 +21,8 @@ export const ZodSignupValidation = z.object({
             }
         ).min(6),
 
-        role: z.enum(['admin', 'user']).default('user'),
+        role: z.enum(['admin', 'user'],{ required_error: 'Role is required'}).default('user'),
+        
         isBlocked: z.boolean().default(false),
         createAt: z.date().default(new Date()),
         updateAt: z.date().default(new Date()),

@@ -1,13 +1,12 @@
 import { ErrorRequestHandler } from "express";
 import { ZodError } from "zod";
 import config from "../config";
-
 import AppError from "./AppError";
+import { TErrorMessage } from "../interface/error";
+import zodErrorHandler from "./zodErrorHandler";
+import mongooseValidationErrorHandler from "./mongooseValidationErrorHandler";
 import castErrorHandler from "./castErrorHandler";
 import duplicateKeyErrorHandler from "./duplicateKeyErrorHandler";
-import mongooseValidationErrorHandler from "./mongooseValidationErrorHandler";
-import zodErrorHandler from "./zodErrorHandler";
-import { TErrorMessage } from "../interface/error";
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   // error pattern
@@ -60,13 +59,15 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
       },
     ];
   }
-  return res.status(statusCode).json({
+
+  // No return, just send the response
+  res.status(statusCode).json({
     success: false,
     message: message,
     errorMessages,
-    // error,
     stack: config.node_env === "development" ? error?.stack : null,
   });
+
 };
 
 export default globalErrorHandler;
