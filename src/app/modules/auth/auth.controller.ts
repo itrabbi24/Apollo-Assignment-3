@@ -6,11 +6,17 @@ const signUpUser = asyncHandler(async (req, res, next) => {
 
   const result = await AuthService.signUpUser(req.body);
 
+  const data = {
+    _id: result._id,
+    email: result.email,
+    name: result.name,
+  }
+
   sendResponse(res, {
     success: true,
-    statusCode: 200,
+    statusCode: 201,
     message: 'User created successfully',
-    data: result,
+    data: data,
   });
 });
 
