@@ -30,7 +30,7 @@ const loginUser = async (payload: ILogin)=>{
   const user = await userModal.findOne({email: email});
 
   if(!user){
-    throw new AppError(404, "User not found");
+    throw new AppError(401, "Invalid credentials");
   }
 
   const isMatch = await userModal.isMatchPassword(password, user.password);

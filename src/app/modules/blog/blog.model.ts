@@ -6,7 +6,7 @@ const blogSchema = new Schema({
     content: { type: String, required: true },
     // author: { type: String, required: true },
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    isPublished: { type: Boolean, default: false },
+    isPublished: { type: Boolean, default: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 });
