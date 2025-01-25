@@ -47,37 +47,11 @@ const loginUser = asyncHandler(async (req, res, next) => {
 });
 
 
-const blockUser = asyncHandler(async (req, res, next)=>{
-  const id = req.params.id;
-
-  if (!id) {
-    throw new AppError(400, 'Email is required');
-  }
-
-  const user = await AuthService.blockedUser(id);
-
-
-  sendResponse(res, {
-    success: true,
-    statusCode: 200,
-    message: 'User successfully blocked',
-    data: {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isBlocked: user.isBlocked,
-    },
-  });
-
-});
-
-
 
 
 export const AuthController = {
   signUpUser,
-  loginUser,
-  blockUser
+  loginUser
 };
 
 
