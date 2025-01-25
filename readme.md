@@ -346,6 +346,17 @@ Apollo-Assignment-3/
 ---
 
 
+## Credentials
+
+- Admin
+  * Email: admin@gmail.com
+  * Password: 123456
+- User
+  * Email: user@gmail.com
+  * Password: 123456
+
+
+
 ## Usage
 - Use a tool like Postman to test the API endpoints.
 - Sign up a new user, log in to receive a JWT token, and use it to authenticate requests.
