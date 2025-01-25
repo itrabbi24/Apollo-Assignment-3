@@ -111,7 +111,7 @@
 		{
 			"name": "Blog Update",
 			"request": {
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [
 					{
 						"key": "Authorization",
