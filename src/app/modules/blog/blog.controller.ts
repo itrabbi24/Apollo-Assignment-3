@@ -21,6 +21,26 @@ const blogPost = asyncHandler(async (req: Request, res: Response, next: NextFunc
   });
 });
 
+
+
+const updateBlogPost = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+
+  const id = req.params.id;
+
+  const updateBlog = await BlogService.updateBlog(id, req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 201,
+    message: "Blog created successfully",
+    data: updateBlog,
+  });
+
+});
+
+
+
 export const BlogController = {
   blogPost,
+  updateBlogPost
 };

@@ -31,6 +31,30 @@ const blogPostServices = async (user: JwtPayload, payload: IBlog) => {
   return populatedResult;
 };
 
+
+const updateBlog = async (id: string, payload: IBlog)=>{
+
+  if(id === undefined || id === null){
+    throw new AppError(400, "Blog id is required");
+  }
+
+  const blog = await blogModal.findOne({ _id: id });
+  
+  if(!blog){
+    throw new AppError(404, "Blog Not Found !");
+  }
+
+  const updatedBlog = await blogModal.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+
+  return updatedBlog;
+
+}
+
+
+
 export const BlogService = {
   blogPostServices,
+  updateBlog
 };

@@ -8,8 +8,10 @@ import { USER_ROLE } from "../../utils/const";
 
 const router = Router();
 
-router.post('/', auth(USER_ROLE.admin), validRequestHandler(ZodBlogPostValidationSchema), BlogController.blogPost);
+router.post('/', auth(USER_ROLE.admin, USER_ROLE.user), validRequestHandler(ZodBlogPostValidationSchema), BlogController.blogPost);
 
+
+router.patch('/:id', auth(USER_ROLE.admin), BlogController.updateBlogPost);
 
 
 export const BlogRoute = router; 
