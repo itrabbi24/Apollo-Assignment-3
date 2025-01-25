@@ -199,6 +199,48 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get All Blog",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/blogs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"blogs"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "new",
+							"disabled": true
+						},
+						{
+							"key": "sortBy",
+							"value": "createdAt",
+							"disabled": true
+						},
+						{
+							"key": "sortOrder",
+							"value": "desc",
+							"disabled": true
+						},
+						{
+							"key": "filter",
+							"value": "679283452b97ccbde77352f3",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
