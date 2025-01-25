@@ -111,7 +111,7 @@
 		{
 			"name": "Blog Update",
 			"request": {
-				"method": "PATCH",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Authorization",
@@ -147,25 +147,16 @@
 		{
 			"name": "Blog Delete",
 			"request": {
-				"method": "PATCH",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmJpQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNzc4NDY0NiwiZXhwIjoxNzM3ODcxMDQ2fQ.BwGmC7I7UafTasRWXykYuFCbLqCjTsICmRvuJk6R7D8",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmJpQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM3NzkwMzI2LCJleHAiOjE3Mzc4NzY3MjZ9.S0g1OYay4-0GDblcShKIVZE70o__VhqK7OKofOTdFQI",
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"title\": \"Updated Blog Title\",\r\n  \"content\": \"Updated content.\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:3000/api/blogs/67928050428e87b131086006",
+					"raw": "http://localhost:3000/api/blogs/679282cab889e375a78b5ea1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -174,7 +165,7 @@
 					"path": [
 						"api",
 						"blogs",
-						"67928050428e87b131086006"
+						"679282cab889e375a78b5ea1"
 					]
 				}
 			},
