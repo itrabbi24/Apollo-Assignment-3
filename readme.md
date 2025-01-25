@@ -4,6 +4,11 @@
 ## Overview
 This project is a web application that allows users to manage blogs. It provides functionalities for user registration, authentication, and blog management. Additionally, admins can perform actions such as blocking users and deleting blogs.
 
+
+
+##  Live Preview [Live Site](https://apollo-assignment-3-rust.vercel.app/)
+
+
 ---
 
 ## Table of Contents
@@ -374,3 +379,8 @@ The application includes middleware for error handling. It ensures proper valida
 - Add frontend interface for a better user experience.
 - Implement email notifications for booking confirmations and updates.
 - Enhance security features such as rate limiting and logging.
+
+## Author 📝
+* ARG RABBI
+* Email: itrabbi24@gmail.com
+* GitHub: github.com/itrabbi24
