@@ -44,6 +44,8 @@ const updateBlog = async (user: JwtPayload, id: string, payload: IBlog) => {
   }
 
   const isValid = await userModal.findOne({ _id: blog.author });
+
+  console.log(user?.email, isValid?.email);
   
   if (user?.email != isValid?.email) {
     throw new AppError(403, "You are not authorized to update this blog");
