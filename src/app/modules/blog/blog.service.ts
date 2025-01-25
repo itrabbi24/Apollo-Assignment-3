@@ -32,29 +32,64 @@ const blogPostServices = async (user: JwtPayload, payload: IBlog) => {
 };
 
 
-const updateBlog = async (id: string, payload: IBlog)=>{
-
-  if(id === undefined || id === null){
-    throw new AppError(400, "Blog id is required");
+const updateBlog = async (user: JwtPayload, id: string, payload: IBlog) => {
+  if (!id) {
+    throw new AppError(400, "Blog ID is required");
   }
 
-  const blog = await blogModal.findOne({ _id: id });
+  const blog = await blogModal.findOne({ _id: id }).populate('author', '_id');
   
-  if(!blog){
-    throw new AppError(404, "Blog Not Found !");
+  if (!blog) {
+    throw new AppError(404, "Blog Not Found!");
   }
 
-  const updatedBlog = await blogModal.findOneAndUpdate({ _id: id }, payload, {
-    new: true,
-  });
+  const isValid = await userModal.findOne({ _id: blog.author });
+  
+  if (user?.email != isValid?.email) {
+    throw new AppError(403, "You are not authorized to update this blog");
+  }
+
+  const updatedBlog = await blogModal
+    .findOneAndUpdate({ _id: id }, payload, { new: true })
+    .select('_id title content')
+    .populate('author', 'name email');
 
   return updatedBlog;
+};
 
-}
+
+
+
+
+
+const deleteBlog = async (user: JwtPayload, id: string) => {
+  if (!id) {
+    throw new AppError(400, "Blog ID is required");
+  }
+
+  const blog = await blogModal.findOne({ _id: id }).populate('author', '_id');
+  
+  if (!blog) {
+    throw new AppError(404, "Blog Not Found!");
+  }
+
+  const isValid = await userModal.findOne({ _id: blog.author });
+  
+  if (user?.email != isValid?.email) {
+    throw new AppError(403, "You are not authorized to update this blog");
+  }
+
+  await blogModal.deleteOne({ _id: id });
+
+  return { message: "Blog deleted successfully" };
+};
+
+
 
 
 
 export const BlogService = {
   blogPostServices,
-  updateBlog
+  updateBlog,
+  deleteBlog
 };

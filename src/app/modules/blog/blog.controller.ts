@@ -26,14 +26,33 @@ const blogPost = asyncHandler(async (req: Request, res: Response, next: NextFunc
 const updateBlogPost = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
 
   const id = req.params.id;
+  const user = (req as any).user as JwtPayload; // Safely casting the user from req
 
-  const updateBlog = await BlogService.updateBlog(id, req.body);
+
+  const updateBlog = await BlogService.updateBlog(user, id, req.body);
 
   sendResponse(res, {
     success: true,
     statusCode: 201,
-    message: "Blog created successfully",
+    message: "Blog update successfully",
     data: updateBlog,
+  });
+
+});
+
+
+const deleteBlog = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{
+  const id = req.params.id;
+  const user = (req as any).user as JwtPayload; // Safely casting the user from req
+
+  const deleteBlog = await BlogService.deleteBlog(user, id);
+
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Blog deleted successfully",
+    data:deleteBlog,
   });
 
 });
@@ -42,5 +61,6 @@ const updateBlogPost = asyncHandler(async (req: Request, res: Response, next: Ne
 
 export const BlogController = {
   blogPost,
-  updateBlogPost
+  updateBlogPost,
+  deleteBlog
 };
