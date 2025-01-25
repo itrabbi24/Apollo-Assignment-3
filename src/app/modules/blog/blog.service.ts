@@ -87,11 +87,50 @@ const deleteBlog = async (user: JwtPayload, id: string) => {
 };
 
 
+const searchBlog = async (search: string, sortBy: string, sortOrder: 'asc' | 'desc', filter: string) => {
+  let query = {};
+
+  // Add search condition if 'search' parameter is provided
+  if (search) {
+    const regex = new RegExp(search, 'i');  // 'i' for case-insensitive search
+    query = {
+      ...query,
+      $or: [
+        { title: { $regex: regex } },
+        { content: { $regex: regex } }
+      ]
+    };
+  }
+
+  // Add filter condition if 'filter' parameter is provided
+  if (filter) {
+    query = {
+      ...query,
+      author: filter  
+    };
+  }
+
+  // Set default sort parameters
+  const sortOptions: [string, 'asc' | 'desc'][] = [];
+  if (sortBy) {
+    sortOptions.push([sortBy, sortOrder]);  // Adds the field and sort order to the array
+  } else {
+    sortOptions.push(['createdAt', 'desc']);  // Default sort by createdAt (desc)
+  }
+
+  // Fetch blogs with populated author details
+  const blogs = await blogModal.find(query)
+    .populate('author', 'title content') 
+    .sort(sortOptions);
+
+  return blogs;
+};
 
 
 
 export const BlogService = {
   blogPostServices,
   updateBlog,
-  deleteBlog
+  deleteBlog,
+  searchBlog
 };

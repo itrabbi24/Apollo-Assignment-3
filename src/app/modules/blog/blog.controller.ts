@@ -58,9 +58,32 @@ const deleteBlog = asyncHandler(async (req: Request, res: Response, next: NextFu
 });
 
 
+const getAllBlog = asyncHandler(async (req: Request, res: Response, next: NextFunction)=>{
+
+  const search = typeof req.query.search === 'string' ? req.query.search : '';
+  const sortBy = typeof req.query.sortBy === 'string' ? req.query.sortBy : 'createdAt';  
+  const sortOrder = req.query.sortOrder === 'desc' ? 'desc' : 'asc';  
+  const filter = typeof req.query.filter === 'string' ? req.query.filter : ''; 
+
+
+  const blogs = await BlogService.searchBlog(search, sortBy, sortOrder, filter);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Blogs fetched successfully",
+    data:blogs,
+  });
+
+
+});
+
+
+
 
 export const BlogController = {
   blogPost,
   updateBlogPost,
-  deleteBlog
+  deleteBlog,
+  getAllBlog
 };
