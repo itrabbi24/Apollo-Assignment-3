@@ -21,7 +21,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/singup",
+					"raw": "http://localhost:3000/api/auth/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -30,7 +30,7 @@
 					"path": [
 						"api",
 						"auth",
-						"singup"
+						"register"
 					]
 				}
 			},
