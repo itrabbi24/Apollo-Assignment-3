@@ -5,7 +5,7 @@ import { AuthController } from './auth.controller';
 
 const router = Router();
 
-router.post('/singup', validRequestHandler(ZodSignupValidation), AuthController.signUpUser);
+router.post('/register', validRequestHandler(ZodSignupValidation), AuthController.signUpUser);
 
 router.post('/login', validRequestHandler(ZodLoginValidationSchema), AuthController.loginUser);
 
